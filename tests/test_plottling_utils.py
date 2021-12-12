@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from my_plotting_utils.plotting_utils import PlottingUtils as pu
+from my_plotting_utils.plotting_utils import printSmth
 
 
 def test_PlottingUtils_getFigure():
@@ -19,3 +20,17 @@ def test_PlottingUtils_setPlot():
     ax = plt.gca()
 
     assert ax.xaxis.get_label().get_text() == xtitle
+
+
+def test_printSmth(capture_stdout):
+    printSmth()
+    printSmth(smt_to_print=None)
+    printSmth(smt_to_print="dfsf")
+
+    expect = [
+        "x IS MISSING\n",
+        "x IS None\n",
+        "dfsf\n",
+    ]
+
+    assert capture_stdout["stdout"] == "".join(expect)

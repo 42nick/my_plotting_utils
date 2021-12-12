@@ -1,3 +1,5 @@
+from typing import Optional
+
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
@@ -20,3 +22,16 @@ class PlottingUtils:
         ax.set_xlim(xlim) if xlim is not None else None
         ax.set_ylim(ylim) if ylim is not None else None
         ax.legend() if leg else None
+
+
+MISSING = object()  # this is a sentinal
+
+
+def printSmth(smt_to_print: Optional[int] = MISSING):
+
+    if smt_to_print is MISSING:
+        print("x IS MISSING")
+    elif smt_to_print is None:
+        print("x IS None")
+    else:
+        print(smt_to_print)
