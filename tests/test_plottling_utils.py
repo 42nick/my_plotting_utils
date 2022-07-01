@@ -22,10 +22,12 @@ def test_PlottingUtils_setPlot():
     assert ax.xaxis.get_label().get_text() == xtitle
 
 
-def test_printSmth(capture_stdout):
+def test_printSmth(capsys):
     printSmth()
     printSmth(smt_to_print=None)
     printSmth(smt_to_print="dfsf")
+
+    captured = capsys.readouterr()
 
     expect = [
         "x IS MISSING\n",
@@ -33,4 +35,4 @@ def test_printSmth(capture_stdout):
         "dfsf\n",
     ]
 
-    assert capture_stdout["stdout"] == "".join(expect)
+    assert captured.out == "".join(expect)
